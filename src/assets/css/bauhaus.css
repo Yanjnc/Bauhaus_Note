@@ -9,7 +9,12 @@
   --bauhaus-border: 2px solid var(--bauhaus-black);
 
   /* Typography */
-  --bauhaus-font-family: 'Helvetica Neue', 'Arial', 'sans-serif';
+  --bauhaus-font-family: 'Helvetica Neue', 'Roboto', 'Arial', 'sans-serif';
+
+  /* Accessible Text Colors */
+  --text-primary: #333333;
+  --text-inverse: #FFFFFF;
+  --transition-duration: 0.3s;
 }
 
 body {
