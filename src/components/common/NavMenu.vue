@@ -113,22 +113,27 @@
 
 </script>
 
-<style>
+<style scoped>
   .nav-bar{
     width: 100%;
-    left: 0px;
-    top: 0px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
   }
-  .el-menu-item{
-    font-weight: bolder!important;
+  .bauhaus-nav.el-menu--horizontal {
+    border-bottom: 4px solid var(--bauhaus-black) !important;
+    height: 60px;
+    line-height: 60px;
   }
-  .el-menu--horizontal>.el-menu-item {
-    height: 35px!important;
-    line-height: 35px!important;
+  
+  /* Deep selector for element ui overrides in scoped style if needed, 
+     but global bauhaus.css handles most. Just specific sizing here. */
+  .el-menu-item, .el-submenu__title {
+    height: 60px !important;
+    line-height: 60px !important;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
-  .el-menu--horizontal>.el-submenu .el-submenu__title {
-    height: 35px!important;
-    line-height: 35px!important;
-  }
-
 </style>

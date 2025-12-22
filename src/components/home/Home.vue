@@ -1,17 +1,23 @@
 <template>
-    <div class="container">
-      <svg viewBox="0 0 1000 300">
-        <symbol id="line-text">
-          <text text-anchor="middle" x="50%" y="50%" dy="0.4em">
-            Note
-          </text>
-        </symbol>
-        <use xlink:href="#line-text" class="text"></use>
-        <use xlink:href="#line-text" class="text"></use>
-        <use xlink:href="#line-text" class="text"></use>
-        <use xlink:href="#line-text" class="text"></use>
-      </svg>
+  <div class="bauhaus-home">
+    <div class="grid-container">
+      <div class="grid-item item-1">
+        <div class="shape-circle"></div>
+      </div>
+      <div class="grid-item item-2">
+        <h1 class="main-title">NOTE<br>NOTE</h1>
+      </div>
+      <div class="grid-item item-3">
+        <div class="shape-triangle"></div>
+      </div>
+      <div class="grid-item item-4">
+        <div class="shape-rect"></div>
+      </div>
+      <div class="grid-item item-5">
+        <p class="subtitle">FORM FOLLOWS FUNCTION</p>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -21,71 +27,95 @@
 </script>
 
 <style scoped>
-  .container {
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top:0;
-    background-image: url("../../../static/homeMask.png");
-    background-size: cover;
-
-    font-size: 120px;
-    font-weight: bolder;
-    text-transform: uppercase;
-  }
-  svg{
-    position: fixed;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .text{
-    fill: none;
-    stroke-width: 5;
-    stroke-dasharray: 0 240;
-    stroke-dashoffset: 0;
-  }
-  .text:nth-child(4n+1){
-    stroke:#FFFFFF;
-    animation: text1 4s ease-in-out forwards;
-  }
-  .text:nth-child(4n+2){
-    stroke:#E0E0E0;
-    animation: text2 4s ease-in-out forwards;
-  }
-  .text:nth-child(4n+3){
-    stroke:#A8A8A8;
-    animation: text3 4s ease-in-out forwards;
-  }
-  .text:nth-child(4n+4){
-    stroke:#787878;
-    animation: text4 4s ease-in-out forwards;
-  }
-  @keyframes text1 {
-    100% {
-      stroke-dasharray: 60 180;
-      stroke-dashoffset: 1000;
-    }
-  }
-  @keyframes text2 {
-    100% {
-      stroke-dasharray: 60 180;
-      stroke-dashoffset: 1060;
-    }
-  }
-  @keyframes text3 {
-    100% {
-      stroke-dasharray: 60 180;
-      stroke-dashoffset: 1120;
-    }
-  }
-  @keyframes text4 {
-    100% {
-      stroke-dasharray: 60 180;
-      stroke-dashoffset: 1180;
-    }
+  .bauhaus-home {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bauhaus-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 60px; /* Space for Navbar */
   }
 
+  .grid-container {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-template-rows: 200px 200px;
+    gap: 0;
+    border: 4px solid var(--bauhaus-black);
+    background-color: var(--bauhaus-white);
+    box-shadow: 20px 20px 0px var(--bauhaus-black);
+  }
+
+  .grid-item {
+    border: 2px solid var(--bauhaus-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .item-1 {
+    background-color: var(--bauhaus-blue);
+  }
+
+  .item-2 {
+    grid-column: span 2;
+    background-color: var(--bauhaus-white);
+  }
+
+  .item-3 {
+    background-color: var(--bauhaus-yellow);
+  }
+
+  .item-4 {
+    background-color: var(--bauhaus-red);
+  }
+
+  .item-5 {
+    background-color: var(--bauhaus-black);
+    color: var(--bauhaus-white);
+  }
+
+  .main-title {
+    font-size: 80px;
+    line-height: 0.9;
+    margin: 0;
+    text-align: left;
+    font-weight: 900;
+    color: var(--bauhaus-black);
+  }
+
+  .subtitle {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 20px;
+  }
+
+  /* Shapes */
+  .shape-circle {
+    width: 150px;
+    height: 150px;
+    background-color: var(--bauhaus-white);
+    border-radius: 50%;
+  }
+
+  .shape-triangle {
+    width: 0;
+    height: 0;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 160px solid var(--bauhaus-black);
+  }
+
+  .shape-rect {
+    width: 100px;
+    height: 100px;
+    background-color: var(--bauhaus-white);
+    transform: rotate(45deg);
+  }
 </style>

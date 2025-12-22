@@ -1,6 +1,6 @@
 <template>
-    <div style="margin-left: 15px;margin-top: 15px">
-      <el-tabs v-model="currentCid" @tab-click="handleClick" type="card" editable @edit="editCategory">
+    <div class="category-bar">
+      <el-tabs v-model="currentCid" @tab-click="handleClick" type="card" editable @edit="editCategory" class="bauhaus-tabs">
         <el-tab-pane   v-for="(item,i) in categories"  :label="item.name" :key="i+item.name" :name="item.id.toString()" >
         </el-tab-pane>
       </el-tabs>
@@ -117,15 +117,56 @@
     }
 </script>
 
-<style>
-  .el-tabs__new-tab{
-    border: 0px!important;
-    margin: 0px 10px 0px 0px!important;
-    font-size: 18px!important;
-    color: crimson!important;
+<style scoped>
+  .category-bar {
+    margin-bottom: 20px;
   }
-  .el-tabs__nav-prev,.el-tabs__nav-next {
-    line-height: 22px!important;
+  
+  /* Deep Selectors for Element UI Tabs to match Bauhaus */
+  .bauhaus-tabs >>> .el-tabs__header {
+    border-bottom: 2px solid var(--bauhaus-black);
+    margin: 0;
   }
 
+  .bauhaus-tabs >>> .el-tabs__nav {
+    border: none !important;
+  }
+
+  .bauhaus-tabs >>> .el-tabs__item {
+    border: 2px solid var(--bauhaus-black) !important;
+    border-bottom: none !important;
+    margin-right: 5px;
+    background-color: var(--bauhaus-white);
+    color: var(--bauhaus-black);
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 0 !important;
+    height: 40px;
+    line-height: 40px;
+    transition: all 0.2s ease;
+  }
+
+  .bauhaus-tabs >>> .el-tabs__item.is-active {
+    background-color: var(--bauhaus-yellow);
+    color: var(--bauhaus-black);
+    top: 2px; /* Visual trick to make it look connected */
+  }
+
+  .bauhaus-tabs >>> .el-tabs__item:hover {
+    background-color: var(--bauhaus-blue);
+    color: var(--bauhaus-white);
+  }
+
+  .bauhaus-tabs >>> .el-tabs__new-tab {
+    border: 2px solid var(--bauhaus-black) !important;
+    color: var(--bauhaus-black) !important;
+    background-color: var(--bauhaus-white);
+    border-radius: 0 !important;
+    margin-left: 10px;
+  }
+  
+  .bauhaus-tabs >>> .el-tabs__new-tab:hover {
+    background-color: var(--bauhaus-red);
+    color: white !important;
+  }
 </style>

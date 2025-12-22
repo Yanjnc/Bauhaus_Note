@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-left: 10px">
+  <div class="bauhaus-bookshelf">
     <category-bar @categorySelect="getNotes" ref="categoryBar"></category-bar>
     <notes ref="notes" @editInfo="handleEditInfo" @addNote="handleAddNote" @updateInfo="getNotes" @editCategory="handleEditCategory"></notes>
     <note-edit-form ref="noteEditForm" @updateInfo="getNotes"></note-edit-form>
@@ -56,15 +56,12 @@
     }
 </script>
 
-<style>
-  .el-tabs__item {
-    height: 20px!important;
-    line-height: 20px!important;
-    font-size: 12px;
+<style scoped>
+  .bauhaus-bookshelf {
+    padding-top: 80px; /* Navbar height + 20px */
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: var(--bauhaus-gray);
+    min-height: 100vh;
   }
-
-  .el-tabs__item.is-active {
-    font-weight: bolder!important;
-  }
-
 </style>

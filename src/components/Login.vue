@@ -1,22 +1,26 @@
 <template>
-  <div class="container">
-    <el-row class="form-body">
-      <h2>登录</h2>
-      <el-form ref="form" :model="loginForm" label-width="0px">
-        <el-form-item  class="form-item">
-          <el-input placeholder="请输入用户名" v-model="loginForm.username"></el-input>
+  <div class="bauhaus-container">
+    <div class="bauhaus-card">
+      <div class="bauhaus-header">
+        <div class="geometric-shape circle"></div>
+        <h2>LOGIN</h2>
+        <div class="geometric-shape square"></div>
+      </div>
+      <el-form ref="form" :model="loginForm" label-width="0px" class="bauhaus-form">
+        <el-form-item class="form-item">
+          <el-input placeholder="USERNAME" v-model="loginForm.username"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input placeholder="请输入密码" v-model="loginForm.password" show-password></el-input>
+          <el-input placeholder="PASSWORD" v-model="loginForm.password" show-password></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit" class="form-confirm">登录</el-button>
+          <el-button type="primary" @click="onSubmit" class="bauhaus-btn-primary">ENTER</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="toRegister" class="form-confirm">去注册</el-button>
+          <el-button @click="toRegister" class="bauhaus-btn-secondary">REGISTER</el-button>
         </el-form-item>
       </el-form>
-    </el-row>
+    </div>
   </div>
 </template>
 
@@ -65,33 +69,71 @@
 </script>
 
 <style scoped>
-  .container{
-    height: 100%;
-    width: 100%;
-    background-image: url("../../static/homeMask.png");
-    background-size: cover;
+  .bauhaus-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bauhaus-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    left: 0px;
-    top:0px;
-    padding-top: 30px;
+    top: 0;
+    left: 0;
   }
-  .form-body{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    border-radius: 10px;
-    margin: 0 auto;
-    width: 25%;
-    min-width: 300px;
-    padding: 30px 30px 15px 30px;
-    background-color: rgba(255,255,255,0.8);
-    box-shadow: 5px 3px 10px rgba(0,0,0,0.9);
+
+  .bauhaus-card {
+    background-color: var(--bauhaus-white);
+    border: 4px solid var(--bauhaus-black);
+    box-shadow: 15px 15px 0px var(--bauhaus-red);
+    padding: 40px;
+    width: 350px;
+    position: relative;
   }
-  .form-confirm{
+
+  .bauhaus-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--bauhaus-black);
+    padding-bottom: 20px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--bauhaus-black);
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+
+  .geometric-shape {
+    width: 20px;
+    height: 20px;
+  }
+
+  .circle {
+    background-color: var(--bauhaus-blue);
+    border-radius: 50%; /* Only exception for pure circle */
+  }
+
+  .square {
+    background-color: var(--bauhaus-yellow);
+  }
+
+  .bauhaus-btn-primary {
     width: 100%;
-    background-color: #585858;
-    border: 2px solid #484848;
-    border-radius: 4px;
+    background-color: var(--bauhaus-blue) !important;
+    border: 2px solid var(--bauhaus-black) !important;
+    color: white !important;
+    margin-bottom: 10px;
+  }
+
+  .bauhaus-btn-secondary {
+    width: 100%;
+    background-color: var(--bauhaus-yellow) !important;
+    border: 2px solid var(--bauhaus-black) !important;
+    color: var(--bauhaus-black) !important;
   }
 </style>

@@ -1,0 +1,138 @@
+:root {
+  /* Bauhaus Color Palette */
+  --bauhaus-red: #E30613;
+  --bauhaus-blue: #005C9C;
+  --bauhaus-yellow: #FFD700;
+  --bauhaus-black: #1A1A1A; /* Slightly off-black for better readability on screens */
+  --bauhaus-white: #FFFFFF;
+  --bauhaus-gray: #F2F2F2;
+  --bauhaus-border: 2px solid var(--bauhaus-black);
+
+  /* Typography */
+  --bauhaus-font-family: 'Helvetica Neue', 'Arial', 'sans-serif';
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--bauhaus-font-family);
+  background-color: var(--bauhaus-gray);
+  color: var(--bauhaus-black);
+}
+
+/* Global Element UI Overrides for Bauhaus Style */
+
+/* Remove Border Radius globally */
+[class*="el-"] {
+  border-radius: 0 !important;
+}
+
+/* Buttons */
+.el-button {
+  border: var(--bauhaus-border) !important;
+  color: var(--bauhaus-black) !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 4px 4px 0px var(--bauhaus-black) !important; /* Hard shadow */
+}
+
+.el-button:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 6px 6px 0px var(--bauhaus-black) !important;
+}
+
+.el-button:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px var(--bauhaus-black) !important;
+}
+
+.el-button--primary {
+  background-color: var(--bauhaus-blue) !important;
+  color: var(--bauhaus-white) !important;
+}
+
+.el-button--success {
+  background-color: var(--bauhaus-yellow) !important;
+  color: var(--bauhaus-black) !important;
+}
+
+.el-button--danger {
+  background-color: var(--bauhaus-red) !important;
+  color: var(--bauhaus-white) !important;
+}
+
+.el-button--default {
+  background-color: var(--bauhaus-white) !important;
+}
+
+/* Inputs */
+.el-input__inner {
+  border: var(--bauhaus-border) !important;
+  background-color: var(--bauhaus-white) !important;
+  color: var(--bauhaus-black) !important;
+  box-shadow: none !important;
+  height: 45px !important;
+}
+
+.el-input__inner:focus {
+  border-color: var(--bauhaus-blue) !important;
+  background-color: #fff !important;
+}
+
+/* Cards / Containers */
+.el-card {
+  border: var(--bauhaus-border) !important;
+  box-shadow: 8px 8px 0px var(--bauhaus-black) !important;
+  background-color: var(--bauhaus-white) !important;
+  color: var(--bauhaus-black) !important;
+}
+
+/* Dialogs */
+.el-dialog {
+  border: var(--bauhaus-border) !important;
+  box-shadow: 12px 12px 0px var(--bauhaus-black) !important;
+}
+
+.el-dialog__header {
+  border-bottom: var(--bauhaus-border) !important;
+  background-color: var(--bauhaus-yellow) !important;
+  padding: 20px !important;
+}
+
+.el-dialog__title {
+  color: var(--bauhaus-black) !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+/* Menus / Navigation */
+.el-menu {
+  border-right: none !important;
+  background-color: var(--bauhaus-black) !important;
+}
+
+.el-menu-item {
+  color: var(--bauhaus-white) !important;
+}
+
+.el-menu-item:hover, .el-menu-item:focus {
+  background-color: var(--bauhaus-blue) !important;
+  color: var(--bauhaus-white) !important;
+}
+
+.el-menu-item.is-active {
+  background-color: var(--bauhaus-red) !important;
+  color: var(--bauhaus-white) !important;
+  font-weight: bold !important;
+  border-left: 5px solid var(--bauhaus-yellow) !important;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}

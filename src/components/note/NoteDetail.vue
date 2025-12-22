@@ -306,26 +306,96 @@
 </script>
 
 <style scoped>
-  .note {
-    border: 0px solid #EBEEF5!important;
-    width: 95%;
+  .bauhaus-detail-container {
+    height: 100vh;
+    background-color: var(--bauhaus-gray);
+    overflow: hidden;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-bar {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .back-btn {
+    background-color: var(--bauhaus-black) !important;
+    color: var(--bauhaus-white) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+  }
+
+  .back-btn:hover {
+    background-color: var(--bauhaus-red) !important;
+    transform: translateX(-5px);
+  }
+
+  .bauhaus-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid var(--bauhaus-black) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-color: var(--bauhaus-white);
+  }
+
+  .quote-card {
+    background-color: #fffde7; /* Light yellow tint for quote */
+  }
+
+  .bauhaus-card >>> .el-card__header {
+    background-color: var(--bauhaus-yellow);
+    border-bottom: 3px solid var(--bauhaus-black) !important;
+    padding: 10px 20px;
+  }
+
+  .bauhaus-card >>> .el-card__body {
+    flex: 1;
+    overflow: hidden;
+    padding: 0 !important;
+  }
+
+  .bauhaus-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-title {
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    color: var(--bauhaus-black);
+  }
+
+  .icon-btn {
+    color: var(--bauhaus-black) !important;
+    font-size: 1.2rem;
+    padding: 5px !important;
+    transition: all 0.2s ease;
+  }
+
+  .icon-btn:hover {
+    color: var(--bauhaus-blue) !important;
+    transform: scale(1.1);
+  }
+
+  .note-html {
+    height: 100%;
+    padding: 20px;
     text-align: left;
-    margin: auto;
   }
-  .note-html{
-    height: 450px;
-  }
-  .back{
-    background-color: #585858!important;
-    border: 0px;
-    position: absolute;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    left: 10px;
-    padding: 5px 5px;
-    z-index: 99;
-  }
-  .op-btn{
-    cursor: pointer;
+
+  /* Scrollbar override */
+  .el-scrollbar__wrap {
+    overflow-x: hidden !important;
   }
 </style>

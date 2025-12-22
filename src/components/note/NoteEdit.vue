@@ -204,9 +204,99 @@
     }
 </script>
 
-<style>
+<style scoped>
+  .bauhaus-edit-container {
+    padding: 20px;
+    background-color: var(--bauhaus-gray);
+    min-height: 100vh;
+  }
+
+  .bauhaus-card {
+    border: 3px solid var(--bauhaus-black) !important;
+    box-shadow: 8px 8px 0px var(--bauhaus-black) !important;
+    border-radius: 0 !important;
+  }
+
+  .bauhaus-card >>> .el-card__header {
+    background-color: var(--bauhaus-yellow);
+    border-bottom: 3px solid var(--bauhaus-black) !important;
+    padding: 15px 20px;
+  }
+
+  .bauhaus-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-title {
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--bauhaus-black);
+    letter-spacing: 1px;
+  }
+
+  .icon-btn {
+    color: var(--bauhaus-black) !important;
+    font-size: 1.2rem;
+    padding: 5px !important;
+    border: 2px solid transparent !important; /* Initial state */
+    transition: all 0.2s ease;
+  }
+
+  .icon-btn:hover {
+    background-color: var(--bauhaus-white);
+    border: 2px solid var(--bauhaus-black) !important;
+    box-shadow: 2px 2px 0px var(--bauhaus-black);
+  }
+
+  .bauhaus-editor {
+    border: 3px solid var(--bauhaus-black) !important;
+    border-radius: 0 !important;
+    margin-top: 10px;
+    box-shadow: none !important; /* Remove mavon-editor default shadow if any */
+    z-index: 1; /* Ensure it stacks correctly */
+  }
+
+  /* Override mavon-editor internal styles */
+  .bauhaus-editor >>> .v-note-op {
+    border-bottom: 2px solid var(--bauhaus-black) !important;
+    background-color: var(--bauhaus-white) !important;
+    border-radius: 0 !important;
+  }
+
+  .bauhaus-editor >>> .v-note-panel {
+    border-radius: 0 !important;
+  }
+  
+  .bauhaus-toolbar-btn {
+    color: var(--bauhaus-black) !important;
+    font-weight: bold;
+  }
+  
+  .bauhaus-toolbar-btn:hover {
+    color: var(--bauhaus-blue) !important;
+  }
+
+  .bauhaus-btn {
+    border: 2px solid var(--bauhaus-black) !important;
+    box-shadow: 4px 4px 0px var(--bauhaus-black) !important;
+    transition: all 0.2s;
+  }
+
+  .bauhaus-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--bauhaus-black) !important;
+  }
+
+  .bauhaus-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--bauhaus-black) !important;
+  }
+
+  /* Scrollbar override */
   .el-scrollbar__wrap{
     overflow-x: hidden!important;
   }
-
 </style>

@@ -1,26 +1,30 @@
 <template>
-    <div class="container">
-      <div class="form-body">
-        <h2>注册账户</h2>
-        <el-form ref="form" :model="registerForm" label-width="0px">
-          <el-form-item  class="form-item">
-            <el-input placeholder="请输入用户名" v-model="registerForm.username"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-input placeholder="请输入密码" v-model="registerForm.password" show-password></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-input placeholder="请确认密码" v-model="registerForm.passwordConfirm" show-password></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="onSubmit" class="form-confirm">注册</el-button>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="toLogin" class="form-confirm">去登录</el-button>
-          </el-form-item>
-        </el-form>
+  <div class="bauhaus-container">
+    <div class="bauhaus-card">
+      <div class="bauhaus-header">
+        <div class="geometric-shape triangle"></div>
+        <h2>REGISTER</h2>
+        <div class="geometric-shape circle-red"></div>
       </div>
+      <el-form ref="form" :model="registerForm" label-width="0px" class="bauhaus-form">
+        <el-form-item class="form-item">
+          <el-input placeholder="USERNAME" v-model="registerForm.username"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input placeholder="PASSWORD" v-model="registerForm.password" show-password></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input placeholder="CONFIRM PASSWORD" v-model="registerForm.passwordConfirm" show-password></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit" class="bauhaus-btn-primary">CREATE ACCOUNT</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click="toLogin" class="bauhaus-btn-secondary">BACK TO LOGIN</el-button>
+        </el-form-item>
+      </el-form>
     </div>
+  </div>
 </template>
 
 <script>
@@ -67,29 +71,77 @@
 </script>
 
 <style scoped>
-  .container{
-    height: 100%;
-    width: 100%;
-    /*background-image: url("../../static/bg.png");*/
-    background-image: url("../../static/homeMask.png");
-    background-size: cover;
+  .bauhaus-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bauhaus-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    left: 0px;
-    top:0px;
+    top: 0;
+    left: 0;
   }
-  .form-body{
-    border-radius: 10px;
-    margin: 100px auto auto;
-    width: 25%;
-    min-width: 200px;
-    padding: 30px 30px 15px 30px;
-    background-color: rgba(255,255,255,0.8);
-    box-shadow: 5px 3px 10px rgba(0,0,0,0.9);
+
+  .bauhaus-card {
+    background-color: var(--bauhaus-white);
+    border: 4px solid var(--bauhaus-black);
+    box-shadow: 15px 15px 0px var(--bauhaus-blue);
+    padding: 40px;
+    width: 350px;
+    position: relative;
   }
-  .form-confirm{
+
+  .bauhaus-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--bauhaus-black);
+    padding-bottom: 20px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--bauhaus-black);
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+
+  .geometric-shape {
+    width: 0;
+    height: 0;
+  }
+
+  .triangle {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid var(--bauhaus-yellow);
+  }
+
+  .circle-red {
+    width: 20px;
+    height: 20px;
+    background-color: var(--bauhaus-red);
+    border-radius: 50%;
+  }
+
+  .bauhaus-btn-primary {
     width: 100%;
-    background-color: #585858;
-    border: 2px solid #484848;
-    border-radius: 4px;
+    background-color: var(--bauhaus-red) !important; /* Different color for register */
+    border: 2px solid var(--bauhaus-black) !important;
+    color: white !important;
+    margin-bottom: 10px;
+  }
+
+  .bauhaus-btn-secondary {
+    width: 100%;
+    background-color: var(--bauhaus-white) !important;
+    border: 2px solid var(--bauhaus-black) !important;
+    color: var(--bauhaus-black) !important;
   }
 </style>

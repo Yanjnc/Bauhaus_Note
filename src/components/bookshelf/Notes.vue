@@ -1,51 +1,44 @@
 <template>
-    <div style="text-align: initial;">
-      <el-row :gutter="10">
-        <el-col :xl="6" :lg="6" :sm="24" v-for="(item,i) in visibleNotes" :key="i">
-          <el-card shadow="hover"  class="box-card" >
-            <div slot="header" class="clearfix">
-              <span class="note-title">{{item.name}}</span>
-              <el-tooltip transition="0s"  class="item" effect="dark" content="编辑笔记内容" placement="top-start">
-                <el-button class="note-operation" type="text" @click="editNote(item.id)"><i class="el-icon-edit"></i></el-button>
-              </el-tooltip>
-              <el-tooltip transition="0s" class="item" effect="dark" content="编辑笔记标题与简介" placement="top-start">
-                <el-button class="note-operation" type="text" @click="editInfo(item)"><i class="el-icon-edit-outline"></i></el-button>
-              </el-tooltip>
-              <el-tooltip transition="0s" class="item" effect="dark" content="删除此笔记" placement="top-start">
-                <el-button class="note-operation" type="text" @click="deleteNote(item.id)"><i class="el-icon-delete"></i></el-button>
-              </el-tooltip>
-            </div>
-            <div class="text item note-abs" @click="readNote(item.id)">
-              {{restrict(item.abs)}}
-            </div>
-          </el-card>
-        </el-col>
+  <div class="bauhaus-notes-container">
+    <el-row :gutter="20">
+      <el-col :xl="6" :lg="8" :md="12" :sm="24" v-for="(item,i) in visibleNotes" :key="i">
+        <div class="bauhaus-note-card" @click="readNote(item.id)">
+          <div class="note-header">
+            <span class="note-title">{{item.name}}</span>
+          </div>
+          <div class="note-body">
+            {{restrict(item.abs)}}
+          </div>
+          <div class="note-actions">
+            <el-button class="action-btn" type="text" @click.stop="editNote(item.id)">EDIT</el-button>
+            <el-button class="action-btn" type="text" @click.stop="editInfo(item)">INFO</el-button>
+            <el-button class="action-btn danger" type="text" @click.stop="deleteNote(item.id)">DEL</el-button>
+          </div>
+        </div>
+      </el-col>
+    </el-row>
 
-      </el-row>
-
-      <el-row style="position: fixed;bottom: 10px;right: 10px">
-        <el-button type="success" circle @click="editCategory">
-          <i class="el-icon-edit"></i>
-        </el-button>
-      </el-row>
-
-      <el-row style="position: fixed;bottom: 70px;right: 10px">
-        <el-button type="primary" circle @click="addNote">
-          <i class="el-icon-document-add"></i>
-        </el-button>
-      </el-row>
-
-      <el-row class="page">
-        <el-pagination
-          layout="prev, pager, next"
-          :current-page="currentPage"
-          :page-size="pageSize"
-          :total="notes.length"
-          @current-change="handelPageChange">
-        </el-pagination>
-      </el-row>
-
+    <div class="fab-container">
+      <div class="fab fab-yellow" @click="editCategory" title="Edit Category">
+        <div class="shape-square"></div>
+      </div>
+      <div class="fab fab-blue" @click="addNote" title="Add Note">
+        <div class="shape-plus"></div>
+      </div>
     </div>
+
+    <div class="pagination-container">
+      <el-pagination
+        layout="prev, pager, next"
+        :current-page="currentPage"
+        :page-size="pageSize"
+        :total="notes.length"
+        @current-change="handelPageChange"
+        class="bauhaus-pagination">
+      </el-pagination>
+    </div>
+
+  </div>
 </template>
 
 <script>
@@ -165,41 +158,180 @@
     }
 </script>
 
-<style>
+<style scoped>
+  .bauhaus-notes-container {
+    width: 100%;
+    padding-bottom: 100px;
+  }
 
-  .box-card{
-    display: inline-block;
-    width: 95%;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  .note-title{
-    font-weight: bolder;
-  }
-  .note-abs{
-    font-size: 12px;
-    height: 50px;
+  .bauhaus-note-card {
+    background-color: var(--bauhaus-white);
+    border: 3px solid var(--bauhaus-black);
+    height: 200px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s;
     cursor: pointer;
-  }
-  .note-operation{
-    float: right;
-    padding: 3px 0;
-    margin-right: 2px;
-    margin-left: 2px!important;
+    box-shadow: 8px 8px 0px var(--bauhaus-black);
   }
 
-  .el-card__header {
-    padding: 9px 20px!important;
-    height: 40px!important;
+  .bauhaus-note-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px var(--bauhaus-blue);
   }
-  .page{
-    text-align: center;
-    position:fixed;
-    margin:auto;
-    left:0;
-    right:0;
-    bottom:0;
-    width:200px;
-    height:50px;
+
+  .note-header {
+    background-color: var(--bauhaus-black);
+    color: var(--bauhaus-white);
+    padding: 10px;
+    border-bottom: 3px solid var(--bauhaus-black);
   }
+
+  .note-title {
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .note-body {
+    padding: 15px;
+    flex-grow: 1;
+    font-size: 14px;
+    color: var(--bauhaus-black);
+    line-height: 1.5;
+  }
+
+  .note-actions {
+    display: flex;
+    border-top: 3px solid var(--bauhaus-black);
+  }
+
+  .action-btn {
+    flex: 1;
+    border-radius: 0;
+    border: none;
+    border-right: 3px solid var(--bauhaus-black);
+    margin: 0 !important;
+    padding: 10px 0;
+    color: var(--bauhaus-black);
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .action-btn:last-child {
+    border-right: none;
+  }
+
+  .action-btn:hover {
+    background-color: var(--bauhaus-yellow);
+    color: var(--bauhaus-black);
+  }
+
+  .action-btn.danger:hover {
+    background-color: var(--bauhaus-red);
+    color: white;
+  }
+
+  /* FABs */
+  .fab-container {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .fab {
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--bauhaus-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 5px 5px 0px var(--bauhaus-black);
+    transition: all 0.2s;
+  }
+
+  .fab:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px var(--bauhaus-black);
+  }
+
+  .fab-yellow {
+    background-color: var(--bauhaus-yellow);
+  }
+
+  .fab-blue {
+    background-color: var(--bauhaus-blue);
+  }
+
+  .shape-square {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--bauhaus-black);
+  }
+
+  .shape-plus {
+    width: 20px;
+    height: 20px;
+    position: relative;
+  }
+
+  .shape-plus::before, .shape-plus::after {
+    content: '';
+    position: absolute;
+    background-color: white;
+  }
+
+  .shape-plus::before {
+    width: 4px;
+    height: 20px;
+    left: 8px;
+    top: 0;
+  }
+
+  .shape-plus::after {
+    width: 20px;
+    height: 4px;
+    top: 8px;
+    left: 0;
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .bauhaus-pagination >>> .btn-prev, .bauhaus-pagination >>> .btn-next {
+     background-color: var(--bauhaus-white) !important;
+     border: 2px solid var(--bauhaus-black) !important;
+     margin: 0 5px;
+     height: 32px;
+     border-radius: 0;
+  }
+  
+  .bauhaus-pagination >>> .el-pager li {
+    background-color: var(--bauhaus-white) !important;
+    border: 2px solid var(--bauhaus-black) !important;
+    margin: 0 5px;
+    border-radius: 0;
+    font-weight: bold;
+    height: 32px;
+    line-height: 28px;
+  }
+  
+  .bauhaus-pagination >>> .el-pager li.active {
+    background-color: var(--bauhaus-blue) !important;
+    color: white;
+  }
+
 </style>
