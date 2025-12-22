@@ -1,11 +1,9 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App'
 import router from './router'
 
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import './assets/css/bauhaus.css';
 
 import axios from 'axios'
@@ -13,20 +11,24 @@ import VueAxios from 'vue-axios'
 
 import store from "./store";
 
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
+// Editor moved to md-editor-v3 within NoteEdit.vue
 
 import $ from 'jquery'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 
-Vue.config.productionTip = false
-Vue.use(ElementUI);
+const app = createApp(App)
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 
 axios.defaults.baseURL = "/api"
 axios.defaults.withCredentials = true
-Vue.use(VueAxios,axios);
+app.use(VueAxios,axios);
 
-Vue.use(mavonEditor)
+app.use(ElementPlus);
+app.use(router)
+app.use(store)
 
 
 
@@ -47,11 +49,4 @@ router.beforeEach((to,from,next) =>{
   }
 })
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
-})
+app.mount('#app')

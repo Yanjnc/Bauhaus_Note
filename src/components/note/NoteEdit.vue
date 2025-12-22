@@ -6,19 +6,12 @@
           <span>{{ note.name }}</span>
           <el-button style="float: right; padding: 3px 0" type="text"><i class="el-icon-more" @click="read(note.id)"></i></el-button>
         </div>
-        <mavon-editor
-          ref="md"
+        <MdEditor
           v-model="note.contentMd"
-          @save="saveNote"
-          @imgAdd="imgAdd">
-          <button
-            type="button"
-            class="op-icon el-icon-s-management"
-            :title="'笔记链接'"
-            slot="left-toolbar-after"
-            @click="getNoteList"
-          ></button>
-        </mavon-editor>
+          :on-save="saveNote"
+          :on-upload-img="onUploadImg"
+          class="bauhaus-editor"
+        />
       </el-card>
     </el-col>
 
@@ -62,8 +55,12 @@
 
 <script>
   import Clipboard from 'clipboard'
+  import { MdEditor } from 'md-editor-v3'
+  import 'md-editor-v3/lib/style.css'
+  import MarkdownIt from 'markdown-it'
     export default {
       name: "NoteEdit",
+      components: { MdEditor },
       data() {
         return {
           noteLink: {
@@ -76,7 +73,8 @@
           titleList:[],
           note:{
             contentMd:''
-          }
+          },
+          mdParser: new MarkdownIt()
         }
       },
       mounted() {
@@ -97,11 +95,11 @@
             console.log(error)
           })
         },
-        saveNote(value,render){
+        saveNote(value){
           var _this = this
           var url = '/update/content/note/'+this.note.id
           this.note.contentMd = value
-          this.note.contentHtml = render
+          this.note.contentHtml = this.mdParser.render(value)
           this.axios.post(url,this.note)
           .then(function (response) {
             if(response.data.status === 200){
@@ -181,24 +179,26 @@
           })
 
         },
-        /** this part is to handle the upload of the pics**/
-        imgAdd(pos, $file){
-          var _this = this
-          var formData = new FormData();
-          formData.append('image', $file);
-          this.axios({
-            url: 'pic/',
-            method: 'post',
-            data: formData,
-            headers: { 'Content-Type': 'multipart/form-data' },
-          }).then((response) => {
-            if(response.status === 200){
-              let url = response.data.object;
-              _this.$refs.md.$img2Url(pos, url);
-            }
-            console.log(url)
-
-          })
+        onUploadImg(files, callback) {
+          const upload = (file) => {
+            const formData = new FormData();
+            formData.append('image', file);
+            return this.axios({
+              url: 'pic/',
+              method: 'post',
+              data: formData,
+              headers: { 'Content-Type': 'multipart/form-data' },
+            }).then((response) => {
+              if (response.status === 200) {
+                return response.data.object;
+              } else {
+                return Promise.reject(new Error('upload failed'))
+              }
+            })
+          }
+          Promise.all(files.map(upload))
+            .then(urls => callback(urls))
+            .catch(() => this.$message('图片上传失败'))
         }
       }
     }

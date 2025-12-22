@@ -18,9 +18,9 @@
                         @click="logout">注销</el-menu-item>
         </el-submenu>
 
-        <li style="float: right;outline: none;cursor: pointer">
-          <i class="el-icon-full-screen" style="height: 35px;line-height: 35px;" @click="fullScreen"></i>
-        </li>
+      <li style="float: right;outline: none;cursor: pointer">
+        <el-icon style="height: 35px;line-height: 35px;" @click="fullScreen"><FullScreen /></el-icon>
+      </li>
 
 
       </el-menu>
